@@ -1,0 +1,4 @@
+*.csv
+*.txt
+*.pyc
+haul_line_bot_awsLambda/.env.yml
