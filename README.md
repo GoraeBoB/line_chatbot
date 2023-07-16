@@ -2,6 +2,7 @@
 
 - [최종발표자료_출력용](https://github.com/GoraeBoB/line_chatbot/blob/master/%EB%B0%9C%ED%91%9C%EB%B3%B8_%EC%97%85%EB%A1%9C%EB%93%9C.pdf)
 - [최종보고서](): 보안상 미기재..
+- [YouTube Link](https://www.youtube.com/watch?v=yOv3faZS8Qo)
 ## 1. Project Abstract
 
 - ICT 비지니스 경진대회 본전 진출 (Ongoing)
