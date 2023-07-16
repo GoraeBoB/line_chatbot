@@ -1,7 +1,7 @@
 # 주머니 속 여행 가이드
 
-- [최종발표자료_출력용]()
-
+- [최종발표자료_출력용](https://github.com/GoraeBoB/line_chatbot/blob/master/%EB%B0%9C%ED%91%9C%EB%B3%B8_%EC%97%85%EB%A1%9C%EB%93%9C.pdf)
+- [최종보고서](): 보안상 미기재..
 ## 1. Project Abstract
 
 - ICT 비지니스 경진대회 본전 진출 (Ongoing)
@@ -20,16 +20,16 @@
 ### Team 고래봅시다
 
 #### Members  
-[`최준혁`](https://github.com/sxs770)|[`김창영`](https://github.com/ChangZero)|[`이창현`](https://github.com/LHyunn)[`홍재민`]()
+[`최준혁`](https://github.com/sxs770)|[`김창영`](https://github.com/ChangZero)|[`이창현`](https://github.com/LHyunn)|[`홍재민`]()
 
 #### Adviser
 [`이수동`](https://dais.ulsan.ac.kr/) 교수
 
 #### 🏆 Contribution  
 
-- [`최준혁`](https://github.com/sxs770)&nbsp; PM • Data Preprocessing • Prompt Enginneering
+- [`최준혁`](https://github.com/sxs770)&nbsp; PM • Data Preprocessing • Prompt Engineering
 - [`김창영`](https://github.com/ChangZero)&nbsp; Backend API • Search Engine Process •  Translate service • Presentation 
-- [`이창현`](https://github.com/LHyunn)&nbsp; Web Crawling • Line Chatbot • Backend API
+- [`이창현`](https://github.com/LHyunn)&nbsp; Web Crawling • Line Chatbot • Backend API • Prompt Engineering
 - [`홍재민`]()&nbsp; Web Crawling
 
 
@@ -41,7 +41,7 @@ git clone https://github.com/TEAM-URS/Ulsan-Recsys-Web.git
 ```
 
 ## 3. Concept Diagram
-![image]()
+![image](https://github.com/GoraeBoB/line_chatbot/assets/97018869/1cb69f6d-3c11-4ae1-a288-b8b0133b9cda)
 
 
 ## 4. Equipment & Software
@@ -53,7 +53,8 @@ git clone https://github.com/TEAM-URS/Ulsan-Recsys-Web.git
 
 
 ## 5.Demo
-![image]()
+![image](https://github.com/GoraeBoB/line_chatbot/assets/97018869/3a7a995f-c714-47e7-8455-0b26e5842dc8)
+
 
 ## 6. Awards
 - 공공데이터경진대회 대상(1st)
