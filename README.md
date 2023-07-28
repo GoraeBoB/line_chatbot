@@ -29,7 +29,7 @@
 #### 🏆 Contribution  
 
 - [`최준혁`](https://github.com/sxs770)&nbsp; PM • Data Preprocessing • Prompt Engineering
-- [`김창영`](https://github.com/ChangZero)&nbsp; Backend API • Search Engine Process •  Translate service • Presentation 
+- [`김창영`](https://github.com/ChangZero)&nbsp; Backend API • Search Engine Process •  Translate service • Prompt Engineering • Presentation 
 - [`이창현`](https://github.com/LHyunn)&nbsp; Web Crawling • Line Chatbot • Backend API • Prompt Engineering
 - [`홍재민`]()&nbsp; Web Crawling
 
