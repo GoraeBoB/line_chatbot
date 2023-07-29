@@ -6,6 +6,7 @@
 ## 1. Project Abstract
 
 - ICT 비지니스 경진대회 본전 진출 (Ongoing)
+- 울산공공데이터 창업 경진대회 본전 진출 (Ongoing)
   
 ### 프로젝트 개요
 
