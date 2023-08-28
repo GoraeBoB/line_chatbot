@@ -1,11 +1,10 @@
 # 주머니 속 여행 가이드
 
-- [최종발표자료_출력용](https://github.com/GoraeBoB/line_chatbot/blob/master/%EB%B0%9C%ED%91%9C%EB%B3%B8_%EC%97%85%EB%A1%9C%EB%93%9C.pdf)
-- [최종보고서](): 보안상 미기재..
+- [발표자료](https://github.com/GoraeBoB/line_chatbot/blob/master/ICT%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C%EB%B3%B8%EC%84%A0%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)
 - [YouTube Link](https://www.youtube.com/watch?v=yOv3faZS8Qo)
 ## 1. Project Abstract
 
-- ICT 비지니스 경진대회 본선 진출 (Ongoing)
+- ICT 비지니스 아이디어 경진대회 - AI부문 본선 진출 (Ongoing)
   
 ### 프로젝트 개요
 
