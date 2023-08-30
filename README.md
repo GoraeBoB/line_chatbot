@@ -58,6 +58,7 @@ git clone https://github.com/TEAM-URS/Ulsan-Recsys-Web.git
 
 ## 6. Awards
 - 공공데이터경진대회 대상(1st)
+- 제4회 ICT 비즈니스 모델 아이디어 경진대회 수상(상훈 미정.)
   
 ## 7. License
 
