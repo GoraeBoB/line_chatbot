@@ -66,6 +66,15 @@ def re_searchDoc(corpus, query):
         flag = 1
     return second_idx, flag
 
+def searchDocTop2(corpus, query):
+    stopWord = loadStopWord()
+    tokenized_corpus = [tokenizer(doc, stopWord) for doc in corpus]
+    bm25 = BM25Okapi(tokenized_corpus)
+    tokenized_query = tokenizer(query, stopWord)
+    doc_scores = bm25.get_scores(tokenized_query)
+    top2idx = [i for i in np.argsort(doc_scores)[::-1] if doc_scores[i] > 3.5]
+    return top2idx
+
 def searchDoc(corpus, query):
     stopWord = loadStopWord()
     tokenized_corpus = [tokenizer(doc, stopWord) for doc in corpus]
@@ -75,12 +84,33 @@ def searchDoc(corpus, query):
     best_idx = np.argmax(doc_scores)
     return best_idx
 
-def getText(data, best_idx, path):
-    title = data.iloc[best_idx][0]
-    f = open(f'{path}/{title}.txt')
-    text = f.read()
-    f.close()
+# def getText(data, best_idx, path):
+#     title = data.iloc[best_idx][0]
+#     f = open(f'{path}/{title}.txt')
+#     text = f.read()
+#     f.close()
+#     return text
+
+def getText(data, idx, path, flag=0):
+    if flag == 1:
+        title = data.iloc[idx[0]][0]
+        f = open(f'{path}/{title}.txt')
+        text = f.read()[:1000]
+        f.close()
+        for num, i in enumerate(idx[1:]):
+            if num == 1:
+                break
+            title = data.iloc[i][0]
+            f = open(f'{path}/{title}.txt')
+            text = text + '\n\n' + f.read()[:500]
+            f.close()
+    else:
+        title = data.iloc[idx][0]
+        f = open(f'{path}/{title}.txt')
+        text = f.read()
+        f.close()
     return text
+
 
 def detect_lang(sentence):
     with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'Keys/papago_api_key.json'), 'r') as f:
@@ -137,14 +167,14 @@ def translate(sentence, det_lang, flag=0):
     return trans_query
     
     
-def find_topic(query, model = "gpt-3.5-turbo", temperature = 0, verbose = False):
+def find_topic(query, model = "gpt-3.5-turbo", temperature = 0.05, verbose = False):
     messages = [
         {
             "role" : "system",
             "content" : """You are artificial intelligence that categorizes sentences into 
-            'Tourist Attraction Recommendations', 'Directions to Tourist Attractions' and 'Introduction of the Chatbot' 
-            The answers are limited to 'Tourist Attraction Recommendations', 'Directions to Tourist Attractions' and 'Introduction of the Chatbot' 
-            You must respond strictly with 'Tourist Attraction Recommendations', 'Directions to Tourist Attractions' and 'Introduction of the Chatbot'"""
+            'Tourist Attraction Recommendations', 'Direction of Tourist Attraction' or 'Introduce yourself' 
+            The answers are limited to 'Tourist Attraction Recommendations', 'Directions to Tourist Attraction' and 'Introduce yourself' 
+            You must respond strictly with 'Tourist Attraction Recommendations', 'Directions to Tourist Attraction' and 'Introduce yourself'"""
                   
         },
         {
@@ -166,12 +196,12 @@ def find_topic(query, model = "gpt-3.5-turbo", temperature = 0, verbose = False)
 
     return topic
 
-def introduce(conversation, model="gpt-3.5-turbo", temperature=0, verbose=False):
-    system_role = f"""You are an AI language model named "해울이", an advisory chatbot that recommends tourist attractions in 울산광역시 in Republic of Korea. 
+def introduce(conversation, model="gpt-4", temperature=0, verbose=False):
+    system_role = f"""You are an advisory chatbot named "해울이" that recommends tourist attractions or tourist routes in Ulsan, Republic of Korea and translate into multi language. 
     You are introduced to the user as a chatbot that recommends tourist attractions in Ulsan City in Republic of Korea.
     Your conversation history is as follows:
         """ + conversation + """
-    You must return answer in Korean. Please answer using polite and formal.
+    You must return answer in Korean. Please answer using friendly and cheerful.
     """
     messages = [
         {"role": "system", "content": system_role},
@@ -192,18 +222,21 @@ def introduce(conversation, model="gpt-3.5-turbo", temperature=0, verbose=False)
     
     return answer
 
-def direction(query, conversation, model="gpt-3.5-turbo", temperature=0, verbose=False):
-    system_role = f"""You are an AI language model named "해울이", an advisory chatbot that recommends tourist attractions in Ulsan City in Republic of Korea. 
-    You must take the given embeddings and return a very detailed explanation of the document in the language of the query. 
+def direction(query, conversation, model="gpt-4", temperature=0, verbose=False):
+    system_role = f"""You are an advisory chatbot named "해울이" that recommends tourist attractions or tourist routes in Ulsan, Republic of Korea and translate into multi language. 
+    You must take the given embeddings and return explanation of the document in the language of the query. 
+    """
+    assistant_role = f"""
     Find the destination in the given conversation or query and then provide the user with directions to reach that destination.
     Your conversation history is as follows:
         """ + conversation + """
     You must return answer related to the given context.
-    You must return answer in Korean. Please answer using polite and formal.
-    Return a accurate answer based on the document and conversation history.
+    You must return answer in Korean. Please answer using friendly and cheerful.    
+    You must return answer in 20 words.
+    You must return answer in 4 seconds.
+    Return a accurate and brief answer based on the document and conversation history.
     If you already explained the attraction, you must not explain it again.
-    """
-    assistant_role = f"""
+    You must return answer the how to go link that in the [].
     The query is as follows:
         """ + query + """
     """
@@ -227,20 +260,24 @@ def direction(query, conversation, model="gpt-3.5-turbo", temperature=0, verbose
     
     return answer
 
-def recommend(query, conversation, model="gpt-3.5-turbo", temperature=0, verbose=False):
-    system_role = f"""You are an AI language model named "해울이", an advisory chatbot that recommends tourist attractions in Ulsan City in Republic of Korea. 
+
+def recommend(query, conversation, model="gpt-4", temperature=0, verbose=False):
+    system_role = f""""You are an advisory chatbot named "해울이" that recommends tourist attractions or tourist routes in Ulsan, Republic of Korea and translate into multi language.
     You must take the given embeddings and return a very detailed explanation of the document in the language of the query. 
-    Provide a description of the tourist attraction based solely on the given query, similar to TripAdvisor.
-    Your conversation history is as follows:
-        """ + conversation + """
+    """
+    assistant_role = f"""
+    Provide a summary of the tourist attractions based solely on the given query.
     Do not provide directions to the tourist attractions.
     You must return answer related to the given context.
-    You must return answer in Korean. Please answer using polite and formal.
-    Return a accurate answer based on the document and conversation history.
-    """
-    assistant_role = f"""
+    You must return answer in Korean. Please answer using friendly and cheerful.    
+    You must return answer in 20 words.
+    You must return answer in 4 seconds.
+    Return a accurate and brief answer based on the document and conversation history.
+    You must return answer the homepage link information.
     The query is as follows:
         """ + query + """
+    Your conversation history is as follows:
+        """ + conversation + """
     """
     
     messages = [
@@ -262,3 +299,45 @@ def recommend(query, conversation, model="gpt-3.5-turbo", temperature=0, verbose
     answer = response['choices'][0]['message']['content'].strip()                              
     
     return answer
+
+# def description(query, conversation, model="gpt-3.5-turbo", temperature=0.05, verbose=False):
+#     system_role = f"""You are an AI language model named "해울이", an advisory chatbot that recommends tourist attractions in Ulsan City in Republic of Korea. 
+#     You must take the given embeddings and return a very detailed explanation of the document in the language of the query. 
+#     Provide a description of the tourist attraction based solely on the given query, similar to TripAdvisor.
+#     Your conversation history is as follows:
+#         """ + conversation + """
+#     Do not provide directions to the tourist attractions.
+#     You must return answer related to the given context.
+#     You must return answer in Korean. Please answer using polite and formal.
+#     You must return answer in 20 words.
+#     Return a accurate answer based on the document and conversation history.
+#     You must return answer the homepage information that in the []. But if you already returned homepage information, you don't have to provide it.
+#     Return a accurate answer based on the document and conversation history.
+#     """
+    
+
+#     assistant_role = f"""
+#     The query is as follows:
+#         """ + query + """
+#     """
+    
+#     messages = [
+#         {"role": "system", "content": system_role},
+#         {"role": "assistant", "content": assistant_role},
+#     ]
+    
+#     print(messages)
+
+#     response = openai.ChatCompletion.create(
+#         model=model,
+#         messages=messages,
+#         temperature=temperature,
+#         max_tokens=512,
+#         top_p = 1.0,
+#         frequency_penalty=0.0,
+#         presence_penalty=0.0,
+#     )
+#     answer = response['choices'][0]['message']['content'].strip()                              
+    
+#     return answer
+
