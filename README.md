@@ -23,7 +23,7 @@
 [`최준혁`](https://github.com/sxs770)|[`김창영`](https://github.com/ChangZero)|[`이창현`](https://github.com/LHyunn)|[`홍재민`]()
 
 #### Adviser
-[`이수동`](https://dais.ulsan.ac.kr/) 교수 | [`용영환`](https://xenonix.com/about/) 멘토
+[`이수동 교수`](https://dais.ulsan.ac.kr/) 지도교수 | [`용영환 대표`] (https://xenonix.com/about/) 멘토 | [`김숙경 교수`] (https://kr.linkedin.com/in/숙경-김-1269a997) 멘토
 
 #### 🏆 Contribution  
 
