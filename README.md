@@ -1,10 +1,6 @@
 # 주머니 속 여행 가이드
 
-- [발표자료](https://github.com/GoraeBoB/line_chatbot/blob/master/ICT%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C%EB%B3%B8%EC%84%A0%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)
-- [YouTube Link](https://www.youtube.com/watch?v=yOv3faZS8Qo)
 ## 1. Project Abstract
-
-- ICT 비지니스 아이디어 경진대회 - AI부문 본선 진출 (Ongoing)
   
 ### 프로젝트 개요
 
@@ -53,12 +49,23 @@ git clone https://github.com/TEAM-URS/Ulsan-Recsys-Web.git
 
 
 ## 5.Demo
+### 시연 이미지
 ![image](https://github.com/GoraeBoB/line_chatbot/assets/97018869/3a7a995f-c714-47e7-8455-0b26e5842dc8)
 
+### 시연 영상
+![Demo](https://github.com/GoraeBoB/line_chatbot/assets/97018869/77169ef1-3077-4d85-a660-ffa483776bfd)
+
+## 6. Competition
+* 2023년 공공빅데이터와 AI활용 경진대회
+  * 주최: 울산정보산업진흥원(uipa), 울산대학교
+* 제 4회 ICT 비즈니스 아이디어 경진대회 
+  * 주최: 정보통신산업진흥원(nipa)
+* ICT이노베이션스퀘어 2023년 전국 문제해결 아이디어 공모 왕중왕전
+  * 주최: 과학기술정보통신부(Ministry of Science and ICT), 정보통신산업진흥원(nipa)
 
 ## 6. Awards
 - 공공데이터경진대회 대상(1st)
-- 제4회 ICT 비즈니스 모델 아이디어 경진대회 수상(상훈 미정.)
+- 제4회 ICT 비즈니스 모델 아이디어 경진대회 대상(1st)
   
 ## 7. License
 
